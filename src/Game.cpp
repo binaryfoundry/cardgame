@@ -21,6 +21,13 @@ Game::Game()
     std::copy(deck.begin() + NUM_CARDS_HALF, deck.end(), player_2_cards.begin());
 }
 
+/**
+ * @brief Shuffles the deck using a random number generator.
+ *
+ * This function uses the Fisher-Yates (Knuth) shuffle algorithm, which operates in linear time O(n).
+ *
+ * @param deck The deck of cards to shuffle.
+ */
 void Game::Shuffle(std::vector<int32_t>& deck)
 {
     std::random_device rd;
