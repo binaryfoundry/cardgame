@@ -56,7 +56,7 @@ private:
 
     /**
      * @brief Plays a round of the game and returns the winner.
-     * @return The winner of the round (Player::Player1 or Player::Player2).
+     * @return The winner of the round (Player::Player1 or Player::Player2 or Player::None for a draw).
      */
     [[nodiscard]] Player PlayCurrentRound();
 

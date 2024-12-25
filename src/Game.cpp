@@ -102,15 +102,20 @@ Player Game::PlayCurrentRound()
     const int32_t player1TopCard = GetPlayer1TopCard();
     const int32_t player2TopCard = GetPlayer2TopCard();
 
-    const Player round_winner = (player1TopCard > player2TopCard) ? Player::Player1 : Player::Player2;
-
-    if (round_winner == Player::Player1)
+    Player round_winner;
+    if (player1TopCard > player2TopCard)
     {
+        round_winner = Player::Player1;
         player_1_score++;
+    }
+    else if (player2TopCard > player1TopCard)
+    {
+        round_winner = Player::Player2;
+        player_2_score++;
     }
     else
     {
-        player_2_score++;
+        round_winner = Player::None; // It's a draw
     }
 
     return round_winner;
