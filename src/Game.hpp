@@ -25,9 +25,10 @@ public:
     size_t GetRound() const;
 
     /**
-     * @brief Plays a whole game, calling round_callback with the winner each round.
-     * @return The winner of the game (Player::Player1 or Player::Player2 or Player::None for a draw).
-     */
+      * @brief Plays a whole game, calling round_callback with the winner each round.
+      * @param round_callback A callback function that is called with the winner of each round.
+      * @return The winner of the game (Player::Player1 or Player::Player2 or Player::None for a draw).
+      */
     [[nodiscard]] Player PlayGame(const std::function<void(Player winner)>& round_callback);
 
 private:
