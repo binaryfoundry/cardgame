@@ -13,12 +13,6 @@ class Game final
 public:
     Game();
 
-    std::vector<int32_t>::const_iterator GetPlayer1CardsIterator() const;
-    std::vector<int32_t>::const_iterator GetPlayer1CardsEnd() const;
-
-    std::vector<int32_t>::const_iterator GetPlayer2CardsIterator() const;
-    std::vector<int32_t>::const_iterator GetPlayer2CardsEnd() const;
-
     int32_t GetPlayer1TopCard() const;
     int32_t GetPlayer2TopCard() const;
 

@@ -35,34 +35,6 @@ void Game::Shuffle(std::vector<int32_t>& deck)
     std::shuffle(deck.begin(), deck.end(), g);
 }
 
-std::vector<int32_t>::const_iterator Game::GetPlayer1CardsIterator() const
-{
-    if (round >= player_1_cards.size())
-    {
-        return player_1_cards.end();
-    }
-    return player_1_cards.begin() + round;
-}
-
-std::vector<int32_t>::const_iterator Game::GetPlayer1CardsEnd() const
-{
-    return player_1_cards.end();
-}
-
-std::vector<int32_t>::const_iterator Game::GetPlayer2CardsIterator() const
-{
-    if (round >= player_2_cards.size())
-    {
-        return player_2_cards.end();
-    }
-    return player_2_cards.begin() + round;
-}
-
-std::vector<int32_t>::const_iterator Game::GetPlayer2CardsEnd() const
-{
-    return player_2_cards.end();
-}
-
 int32_t Game::GetPlayer1TopCard() const
 {
     if (round >= player_1_cards.size())
