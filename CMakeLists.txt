@@ -24,10 +24,12 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Source files and header files
 set(SOURCES
     src/Main.cpp
-    src/Game.cpp)
+    src/Game.cpp
+    src/Presentation.cpp)
 
 set(HEADERS
-    src/Game.hpp)
+    src/Game.hpp
+    src/Presentation.hpp)
 
 # Organize files in folders for IDEs
 source_group("Source" FILES ${SOURCES})
