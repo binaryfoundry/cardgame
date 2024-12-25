@@ -93,3 +93,19 @@ Player Game::PlayRound()
 
     return winner;
 }
+
+Player Game::Winner()
+{
+    if (player_1_score > player_2_score)
+    {
+        return Player::Player1;
+    }
+    else if (player_2_score > player_1_score)
+    {
+        return Player::Player2;
+    }
+    else
+    {
+        return Player::None;
+    }
+}

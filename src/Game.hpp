@@ -5,7 +5,8 @@
 enum class Player
 {
     Player1,
-    Player2
+    Player2,
+    None
 };
 
 class Game final
@@ -27,6 +28,12 @@ public:
      * @return The winner of the round (Player::Player1 or Player::Player2).
      */
     [[nodiscard]] Player PlayRound();
+
+    /**
+     * @brief Returns the currently winning player.
+     * @return The winner of the round (Player::Player1 or Player::Player2 or Player::None for a draw).
+     */
+    [[nodiscard]] Player Winner();
 
 private:
     static constexpr size_t NUM_CARDS = 52;
