@@ -55,3 +55,62 @@ std::vector<int32_t>::const_iterator Game::GetPlayer2CardsEnd() const
 {
     return player_2_cards.end();
 }
+
+int32_t Game::GetPlayer1TopCard() const
+{
+    if (flipped_cards >= player_1_cards.size())
+    {
+        return -1;
+    }
+    return player_1_cards[flipped_cards];
+}
+
+int32_t Game::GetPlayer2TopCard() const
+{
+    if (flipped_cards >= player_2_cards.size())
+    {
+        return -1;
+    }
+    return player_2_cards[flipped_cards];
+}
+
+int32_t Game::GetPlayer1Score() const
+{
+    return player_1_score;
+}
+
+int32_t Game::GetPlayer2Score() const
+{
+    return player_2_score;
+}
+
+bool Game::GameOver() const
+{
+    return flipped_cards >= player_1_cards.size() || flipped_cards >= player_2_cards.size();
+}
+
+size_t Game::Round() const
+{
+    return flipped_cards;
+}
+
+Player Game::PlayRound()
+{
+    const int32_t player1TopCard = GetPlayer1TopCard();
+    const int32_t player2TopCard = GetPlayer2TopCard();
+
+    const Player winner = (player1TopCard > player2TopCard) ? Player::Player1 : Player::Player2;
+
+    if (winner == Player::Player1)
+    {
+        player_1_score++;
+    }
+    else
+    {
+        player_2_score++;
+    }
+
+    flipped_cards++;
+
+    return winner;
+}
