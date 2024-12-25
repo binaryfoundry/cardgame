@@ -42,6 +42,7 @@ private:
     std::vector<int32_t> player_1_cards;
     std::vector<int32_t> player_2_cards;
 
+    static constexpr std::vector<int32_t> GenerateDeck();
     void Split(const std::vector<int32_t>& deck);
     void Shuffle(std::vector<int32_t>& deck);
     bool GetGameOver() const;
@@ -57,4 +58,6 @@ private:
      * @return The winner of the round (Player::Player1 or Player::Player2).
      */
     [[nodiscard]] Player PlayCurrentRound();
+
+
 };

@@ -2,15 +2,22 @@
 #include <algorithm>
 #include <random>
 
-Game::Game()
+constexpr std::vector<int32_t> Game::GenerateDeck()
 {
-    // Initialize the deck and shuffle it
     std::vector<int32_t> deck(NUM_CARDS);
     for (size_t i = 0; i < NUM_CARDS; ++i)
     {
         deck[i] = static_cast<int32_t>(i);
     }
+    return deck;
+}
+
+Game::Game()
+{
+    // Initialize the deck and shuffle it
+    std::vector<int32_t> deck = GenerateDeck();
     Shuffle(deck);
+
     Split(deck);
 }
 
