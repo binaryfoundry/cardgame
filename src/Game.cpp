@@ -88,7 +88,7 @@ size_t Game::Round() const
     return round;
 }
 
-Player Game::PlayRound()
+Player Game::PlayCurrentRound()
 {
     const int32_t player1TopCard = GetPlayer1TopCard();
     const int32_t player2TopCard = GetPlayer2TopCard();
@@ -103,8 +103,6 @@ Player Game::PlayRound()
     {
         player_2_score++;
     }
-
-    round++;
 
     return winner;
 }
@@ -123,4 +121,16 @@ Player Game::Winner()
     {
         return Player::None;
     }
+}
+
+Player Game::PlayGame(const std::function<void(Player winner)>& round_callback)
+{
+    while (!GameOver())
+    {
+        const Player winner = PlayCurrentRound();
+        round_callback(winner);
+        round++;
+    }
+
+    return Winner();
 }

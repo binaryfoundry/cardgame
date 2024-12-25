@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <functional>
 
 enum class Player
 {
@@ -25,16 +26,16 @@ public:
     size_t Round() const;
 
     /**
-     * @brief Plays a round of the game and returns the winner.
-     * @return The winner of the round (Player::Player1 or Player::Player2).
-     */
-    [[nodiscard]] Player PlayRound();
-
-    /**
      * @brief Returns the currently winning player.
      * @return The winner of the round (Player::Player1 or Player::Player2 or Player::None for a draw).
      */
     [[nodiscard]] Player Winner();
+
+    /**
+     * @brief Plays a whole game, calling round_callback with the winner each round.
+     * @return The winner of the game (Player::Player1 or Player::Player2 or Player::None for a draw).
+     */
+    [[nodiscard]] Player PlayGame(const std::function<void(Player winner)>& round_callback);
 
 private:
     static constexpr size_t NUM_CARDS = 52;
@@ -50,4 +51,10 @@ private:
 
     void Split(const std::vector<int32_t>& deck);
     void Shuffle(std::vector<int32_t>& deck);
+
+    /**
+     * @brief Plays a round of the game and returns the winner.
+     * @return The winner of the round (Player::Player1 or Player::Player2).
+     */
+    [[nodiscard]] Player PlayCurrentRound();
 };
