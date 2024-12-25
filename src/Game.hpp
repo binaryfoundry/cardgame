@@ -22,14 +22,7 @@ public:
     int32_t GetPlayer1Score() const;
     int32_t GetPlayer2Score() const;
 
-    bool GameOver() const;
-    size_t Round() const;
-
-    /**
-     * @brief Returns the currently winning player.
-     * @return The winner of the round (Player::Player1 or Player::Player2 or Player::None for a draw).
-     */
-    [[nodiscard]] Player Winner();
+    size_t GetRound() const;
 
     /**
      * @brief Plays a whole game, calling round_callback with the winner each round.
@@ -51,6 +44,13 @@ private:
 
     void Split(const std::vector<int32_t>& deck);
     void Shuffle(std::vector<int32_t>& deck);
+    bool GetGameOver() const;
+
+    /**
+     * @brief Returns the currently winning player.
+     * @return The winner of the round (Player::Player1 or Player::Player2 or Player::None for a draw).
+     */
+    [[nodiscard]] Player GetWinner() const;
 
     /**
      * @brief Plays a round of the game and returns the winner.

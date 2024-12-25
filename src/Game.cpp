@@ -78,14 +78,16 @@ int32_t Game::GetPlayer2Score() const
     return player_2_score;
 }
 
-bool Game::GameOver() const
+Player Game::PlayGame(const std::function<void(Player winner)>& round_callback)
 {
-    return round >= player_1_cards.size() || round >= player_2_cards.size();
-}
+    while (!GetGameOver())
+    {
+        const Player winner = PlayCurrentRound();
+        round_callback(winner);
+        round++;
+    }
 
-size_t Game::Round() const
-{
-    return round;
+    return GetWinner();
 }
 
 Player Game::PlayCurrentRound()
@@ -93,9 +95,9 @@ Player Game::PlayCurrentRound()
     const int32_t player1TopCard = GetPlayer1TopCard();
     const int32_t player2TopCard = GetPlayer2TopCard();
 
-    const Player winner = (player1TopCard > player2TopCard) ? Player::Player1 : Player::Player2;
+    const Player round_winner = (player1TopCard > player2TopCard) ? Player::Player1 : Player::Player2;
 
-    if (winner == Player::Player1)
+    if (round_winner == Player::Player1)
     {
         player_1_score++;
     }
@@ -104,10 +106,10 @@ Player Game::PlayCurrentRound()
         player_2_score++;
     }
 
-    return winner;
+    return round_winner;
 }
 
-Player Game::Winner()
+Player Game::GetWinner() const
 {
     if (player_1_score > player_2_score)
     {
@@ -123,14 +125,12 @@ Player Game::Winner()
     }
 }
 
-Player Game::PlayGame(const std::function<void(Player winner)>& round_callback)
+bool Game::GetGameOver() const
 {
-    while (!GameOver())
-    {
-        const Player winner = PlayCurrentRound();
-        round_callback(winner);
-        round++;
-    }
+    return round >= player_1_cards.size() || round >= player_2_cards.size();
+}
 
-    return Winner();
+size_t Game::GetRound() const
+{
+    return round;
 }

@@ -4,7 +4,7 @@ void PrintPlayGame(Game& game, std::ostream& os)
 {
     const Player winner = game.PlayGame([&](Player winner)
     {
-        os << "Round: " << game.Round() << std::endl;
+        os << "Round: " << game.GetRound() << std::endl;
         os << "Player 1 Card: " << game.GetPlayer1TopCard() << std::endl;
         os << "Player 2 Card: " << game.GetPlayer2TopCard() << std::endl;
 
