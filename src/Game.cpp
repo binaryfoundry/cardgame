@@ -30,11 +30,11 @@ void Game::Shuffle(std::vector<int32_t>& deck)
 
 std::vector<int32_t>::const_iterator Game::GetPlayer1CardsIterator() const
 {
-    if (flipped_cards >= player_1_cards.size())
+    if (round >= player_1_cards.size())
     {
         return player_1_cards.end();
     }
-    return player_1_cards.begin() + flipped_cards;
+    return player_1_cards.begin() + round;
 }
 
 std::vector<int32_t>::const_iterator Game::GetPlayer1CardsEnd() const
@@ -44,11 +44,11 @@ std::vector<int32_t>::const_iterator Game::GetPlayer1CardsEnd() const
 
 std::vector<int32_t>::const_iterator Game::GetPlayer2CardsIterator() const
 {
-    if (flipped_cards >= player_2_cards.size())
+    if (round >= player_2_cards.size())
     {
         return player_2_cards.end();
     }
-    return player_2_cards.begin() + flipped_cards;
+    return player_2_cards.begin() + round;
 }
 
 std::vector<int32_t>::const_iterator Game::GetPlayer2CardsEnd() const
@@ -58,20 +58,20 @@ std::vector<int32_t>::const_iterator Game::GetPlayer2CardsEnd() const
 
 int32_t Game::GetPlayer1TopCard() const
 {
-    if (flipped_cards >= player_1_cards.size())
+    if (round >= player_1_cards.size())
     {
         return -1;
     }
-    return player_1_cards[flipped_cards];
+    return player_1_cards[round];
 }
 
 int32_t Game::GetPlayer2TopCard() const
 {
-    if (flipped_cards >= player_2_cards.size())
+    if (round >= player_2_cards.size())
     {
         return -1;
     }
-    return player_2_cards[flipped_cards];
+    return player_2_cards[round];
 }
 
 int32_t Game::GetPlayer1Score() const
@@ -86,12 +86,12 @@ int32_t Game::GetPlayer2Score() const
 
 bool Game::GameOver() const
 {
-    return flipped_cards >= player_1_cards.size() || flipped_cards >= player_2_cards.size();
+    return round >= player_1_cards.size() || round >= player_2_cards.size();
 }
 
 size_t Game::Round() const
 {
-    return flipped_cards;
+    return round;
 }
 
 Player Game::PlayRound()
@@ -110,7 +110,7 @@ Player Game::PlayRound()
         player_2_score++;
     }
 
-    flipped_cards++;
+    round++;
 
     return winner;
 }

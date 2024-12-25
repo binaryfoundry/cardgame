@@ -38,7 +38,7 @@ private:
     static constexpr size_t NUM_CARDS = 52;
     static constexpr size_t NUM_CARDS_HALF = NUM_CARDS / 2;
 
-    size_t flipped_cards = 0;
+    size_t round = 0;
     int32_t player_1_score = 0;
     int32_t player_2_score = 0;
     std::vector<int32_t> player_1_cards;
