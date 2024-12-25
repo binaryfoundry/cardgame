@@ -13,6 +13,7 @@ class Game final
 {
 public:
     Game();
+    Game(const std::vector<int32_t>& pre_shuffled_deck);
 
     int32_t GetPlayer1TopCard() const;
     int32_t GetPlayer2TopCard() const;
@@ -47,5 +48,6 @@ private:
     std::vector<int32_t> player_1_cards;
     std::vector<int32_t> player_2_cards;
 
+    void Split(const std::vector<int32_t>& deck);
     void Shuffle(std::vector<int32_t>& deck);
 };

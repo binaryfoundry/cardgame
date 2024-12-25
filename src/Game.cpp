@@ -11,7 +11,22 @@ Game::Game()
         deck[i] = static_cast<int32_t>(i);
     }
     Shuffle(deck);
+    Split(deck);
+}
 
+Game::Game(const std::vector<int32_t>& pre_shuffled_deck)
+{
+    // Ensure the pre-shuffled deck has the correct number of cards
+    if (pre_shuffled_deck.size() != NUM_CARDS)
+    {
+        throw std::invalid_argument("Pre-shuffled deck must contain exactly NUM_CARDS cards.");
+    }
+
+    Split(pre_shuffled_deck);
+}
+
+void Game::Split(const std::vector<int32_t>& deck)
+{
     // Resize the player card vectors
     player_1_cards.resize(NUM_CARDS_HALF);
     player_2_cards.resize(NUM_CARDS_HALF);
