@@ -2,11 +2,11 @@
 
 void PrintPlayGame(Game& game, std::ostream& os)
 {
-    const Player winner = game.PlayGame([&](Player winner)
+    const Player winner = game.PlayGame([&](const size_t played_round, const int32_t player_1_card, const int32_t player_2_card, const Player winner)
     {
-        os << "Round: " << game.GetRound() << std::endl;
-        os << "Player 1 Card: " << game.GetPlayer1TopCard() << std::endl;
-        os << "Player 2 Card: " << game.GetPlayer2TopCard() << std::endl;
+        os << "Round: " << played_round << std::endl;
+        os << "Player 1 Card: " << player_1_card << std::endl;
+        os << "Player 2 Card: " << player_2_card << std::endl;
 
         os << "Winner: " << (winner == Player::Player1 ? "Player 1" : "Player 2") << std::endl;
     });

@@ -82,12 +82,15 @@ int32_t Game::GetPlayer2Score() const
     return player_2_score;
 }
 
-Player Game::PlayGame(const std::function<void(Player winner)>& round_callback)
+Player Game::PlayGame(const RoundCallback& round_callback)
 {
     while (!GetGameOver())
     {
         const Player winner = PlayCurrentRound();
-        round_callback(winner);
+        const size_t played_round = GetRound();
+        const uint32_t player_1_card = GetPlayer1TopCard();
+        const uint32_t player_2_card = GetPlayer2TopCard();
+        round_callback(played_round, player_1_card, player_2_card, winner);
         round++;
     }
 
