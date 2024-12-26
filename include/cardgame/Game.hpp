@@ -100,7 +100,7 @@ private:
     std::vector<uint32_t> player_2_cards;
 
     // Private methods
-    static constexpr std::vector<uint32_t> GenerateDeck();
+    constexpr std::array<uint32_t, NUM_CARDS> GenerateDeck();
 
     /**
      * @brief Shuffles the deck using a random number generator.
@@ -109,9 +109,9 @@ private:
      *
      * @param deck The deck of cards to shuffle.
      */
-    void Shuffle(std::vector<uint32_t>& deck);
+    void Shuffle(std::array<uint32_t, Game::NUM_CARDS>& deck);
 
-    void Split(const std::vector<uint32_t>& deck);
+    void Split(const std::array<uint32_t, Game::NUM_CARDS>& deck);
     void Reset();
 
     uint32_t GetPlayer1TopCard() const;

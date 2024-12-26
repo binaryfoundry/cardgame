@@ -5,12 +5,12 @@
 namespace cardgame
 {
 
-constexpr std::vector<uint32_t> Game::GenerateDeck()
+constexpr std::array<uint32_t, Game::NUM_CARDS> Game::GenerateDeck()
 {
-    std::vector<uint32_t> deck(NUM_CARDS);
+    std::array<uint32_t, NUM_CARDS> deck{};
     for (size_t i = 0; i < NUM_CARDS; ++i)
     {
-        deck[i] = static_cast<int32_t>(i);
+        deck[i] = static_cast<uint32_t>(i);
     }
     return deck;
 }
@@ -18,7 +18,7 @@ constexpr std::vector<uint32_t> Game::GenerateDeck()
 Game::Game()
 {
     // Initialize the deck and shuffle it
-    std::vector<uint32_t> deck = GenerateDeck();
+    auto deck = GenerateDeck();
     Shuffle(deck);
 
     Split(deck);
@@ -26,13 +26,13 @@ Game::Game()
 
 Game::Game(const std::array<uint32_t, NUM_CARDS>& pre_shuffled_deck)
 {
-    std::vector<uint32_t> deck = GenerateDeck();
+    auto deck = GenerateDeck();
     std::copy(pre_shuffled_deck.begin(), pre_shuffled_deck.begin() + NUM_CARDS, deck.begin());
 
     Split(deck);
 }
 
-void Game::Split(const std::vector<uint32_t>& deck)
+void Game::Split(const std::array<uint32_t, Game::NUM_CARDS>& deck)
 {
     // Resize the player card vectors
     player_1_cards.resize(NUM_CARDS_HALF);
@@ -43,7 +43,7 @@ void Game::Split(const std::vector<uint32_t>& deck)
     std::copy(deck.begin() + NUM_CARDS_HALF, deck.end(), player_2_cards.begin());
 }
 
-void Game::Shuffle(std::vector<uint32_t>& deck)
+void Game::Shuffle(std::array<uint32_t, Game::NUM_CARDS>& deck)
 {
     std::random_device rd;
     std::mt19937 g(rd());
