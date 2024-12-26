@@ -53,7 +53,7 @@ add_library(
     ${HEADERS})
 
 # Add the executable
-add_executable(${PROJECT_NAME} src/Main.cpp)
+add_executable(${PROJECT_NAME} game/Main.cpp)
 
 # Link the library to the executable
 target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARY_NAME})
