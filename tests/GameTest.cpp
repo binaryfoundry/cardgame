@@ -123,7 +123,8 @@ void TestUnusualValues()
     std::cout << "TestUnusualValues passed." << std::endl;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
     TestGame();
     TestGameMultiplePlays();
     TestFullDeckDraw();
