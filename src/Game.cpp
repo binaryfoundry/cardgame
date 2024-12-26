@@ -82,6 +82,17 @@ int32_t Game::GetPlayer2Score() const
     return player_2_score;
 }
 
+Player Game::PlayGame()
+{
+    while (!GetGameOver())
+    {
+        const Player winner = PlayCurrentRound();
+        round++;
+    }
+
+    return GetWinner();
+}
+
 Player Game::PlayGame(const RoundCallback& round_callback)
 {
     while (!GetGameOver())

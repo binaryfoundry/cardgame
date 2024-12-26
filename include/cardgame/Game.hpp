@@ -25,6 +25,12 @@ public:
     int32_t GetPlayer2Score() const;
 
     /**
+     * @brief Plays a whole game.
+     * @return The winner of the game (Player::Player1 or Player::Player2 or Player::None for a draw).
+     */
+    [[nodiscard]] Player PlayGame();
+
+    /**
       * @brief Plays a whole game, calling round_callback with the winner each round.
       * @param round_callback A callback function that is called with the winner of each round.
       * @return The winner of the game (Player::Player1 or Player::Player2 or Player::None for a draw).
