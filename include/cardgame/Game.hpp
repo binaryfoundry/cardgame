@@ -30,17 +30,11 @@ public:
     uint32_t GetPlayer2Score() const;
 
     /**
-     * @brief Plays a whole game. Calling again will simulate the game again.
-     * @return The winner of the game (Player::Player1 or Player::Player2 or Player::None for a draw).
-     */
-    [[nodiscard]] Player PlayGame();
-
-    /**
       * @brief Plays a whole game, calling round_callback with the winner each round. Calling again will simulate the game again.
-      * @param round_callback A callback function that is called with the winner of each round.
+      * @param round_callback An optional callback function that is called with the winner of each round. Default is nullptr.
       * @return The winner of the game (Player::Player1 or Player::Player2 or Player::None for a draw).
       */
-    [[nodiscard]] Player PlayGame(const RoundCallback& round_callback);
+    [[nodiscard]] Player PlayGame(const RoundCallback& round_callback = nullptr);
 
 private:
     size_t round = 0;

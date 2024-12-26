@@ -85,19 +85,6 @@ uint32_t Game::GetPlayer2Score() const
     return player_2_score;
 }
 
-Player Game::PlayGame()
-{
-    Reset();
-
-    while (!GetGameOver())
-    {
-        const Player winner = PlayCurrentRound();
-        round++;
-    }
-
-    return GetWinner();
-}
-
 Player Game::PlayGame(const RoundCallback& round_callback)
 {
     Reset();
@@ -105,10 +92,13 @@ Player Game::PlayGame(const RoundCallback& round_callback)
     while (!GetGameOver())
     {
         const Player winner = PlayCurrentRound();
-        const size_t played_round = GetRound();
-        const uint32_t player_1_card = GetPlayer1TopCard();
-        const uint32_t player_2_card = GetPlayer2TopCard();
-        round_callback(played_round, player_1_card, player_2_card, winner);
+        if (round_callback)
+        {
+            const size_t played_round = GetRound();
+            const uint32_t player_1_card = GetPlayer1TopCard();
+            const uint32_t player_2_card = GetPlayer2TopCard();
+            round_callback(played_round, player_1_card, player_2_card, winner);
+        }
         round++;
     }
 
