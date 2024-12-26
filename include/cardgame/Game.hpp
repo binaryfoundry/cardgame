@@ -4,6 +4,9 @@
 #include <vector>
 #include <functional>
 
+namespace cardgame
+{
+
 enum class Player
 {
     Player1,
@@ -73,3 +76,6 @@ private:
 
 
 };
+
+}
+// namespace cardgame

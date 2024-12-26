@@ -2,6 +2,9 @@
 #include <algorithm>
 #include <random>
 
+namespace cardgame
+{
+
 constexpr std::vector<uint32_t> Game::GenerateDeck()
 {
     std::vector<uint32_t> deck(NUM_CARDS);
@@ -170,3 +173,5 @@ size_t Game::GetRound() const
 {
     return round;
 }
+
+} // namespace cardgame

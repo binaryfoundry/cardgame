@@ -1,5 +1,7 @@
 #include "cardgame/Game.hpp"
 
+using namespace cardgame;
+
 #include <iostream>
 #include <cassert>
 
