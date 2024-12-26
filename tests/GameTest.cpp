@@ -25,6 +25,15 @@ void TestGame()
         const Player winner = game.Play([&](const size_t played_round, const int32_t player_1_card, const int32_t player_2_card, const Player winner)
         {
             assert(winner != Player::None);
+
+            if (winner == Player::Player1)
+            {
+                assert(player_1_card > player_2_card);
+            }
+            else if (winner == Player::Player2)
+            {
+                assert(player_2_card > player_1_card);
+            }
         });
 
         assert(game.GetPlayer1Score() + game.GetPlayer2Score() == Game::NUM_CARDS_HALF);
@@ -107,7 +116,14 @@ constexpr uint32_t uint32_t_min_value = std::numeric_limits<uint32_t>::min();
 constexpr uint32_t uint32_t_infinity = std::numeric_limits<uint32_t>::infinity();
 constexpr uint32_t uint32_t_nan = std::numeric_limits<uint32_t>::quiet_NaN();
 
-// This isn't a problem for uint32_t, but it's a good habit to have incase the type ever changes.
+/**
+ * @brief Tests the game with unusual values in the deck.
+ *
+ * This test uses a deck with maximum, minimum, NaN, and infinity values to ensure
+ * the game logic handles these edge cases correctly. Note that while uint32_t
+ * cannot represent NaN or infinity, this test is designed to check robustness
+ * in case the type ever changes.
+ */
 void TestUnusualValues()
 {
     Game game({
