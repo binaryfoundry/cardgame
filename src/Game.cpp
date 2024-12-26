@@ -84,6 +84,8 @@ uint32_t Game::GetPlayer2Score() const
 
 Player Game::PlayGame()
 {
+    Reset();
+
     while (!GetGameOver())
     {
         const Player winner = PlayCurrentRound();
@@ -95,6 +97,8 @@ Player Game::PlayGame()
 
 Player Game::PlayGame(const RoundCallback& round_callback)
 {
+    Reset();
+
     while (!GetGameOver())
     {
         const Player winner = PlayCurrentRound();
@@ -106,6 +110,13 @@ Player Game::PlayGame(const RoundCallback& round_callback)
     }
 
     return GetWinner();
+}
+
+void Game::Reset()
+{
+    round = 0;
+    player_1_score = 0;
+    player_2_score = 0;
 }
 
 Player Game::PlayCurrentRound()

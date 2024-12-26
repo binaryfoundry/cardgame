@@ -31,6 +31,30 @@ void TestGame()
     std::cout << "TestGame passed." << std::endl;
 }
 
+void TestGameMultiplePlays()
+{
+    for (uint32_t i = 0; i < 20; i++)
+    {
+        Game game;
+        const Player winner = game.PlayGame([&](const size_t played_round, const int32_t player_1_card, const int32_t player_2_card, const Player winner)
+        {
+            assert(winner != Player::None);
+        });
+
+        const uint32_t player_1_score = game.GetPlayer1Score();
+        const uint32_t player_2_score = game.GetPlayer2Score();
+
+        const Player winner2 = game.PlayGame();
+
+        assert(player_1_score + player_2_score == 26);
+        assert(player_1_score == game.GetPlayer1Score());
+        assert(player_2_score == game.GetPlayer2Score());
+        assert(winner == winner2);
+    }
+
+    std::cout << "TestGameMultiplePlays passed." << std::endl;
+}
+
 void TestFullDeckDraw()
 {
     Game game({
@@ -99,6 +123,7 @@ void TestUnusualValues()
 
 int main(int argc, char* argv[]) {
     TestGame();
+    TestGameMultiplePlays();
     TestFullDeckDraw();
     TestFullDeckPlayer1Wins();
     TestFullDeckPlayer2Wins();
