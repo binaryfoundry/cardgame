@@ -27,7 +27,7 @@ void TestGame()
             assert(winner != Player::None);
         });
 
-        assert(game.GetPlayer1Score() + game.GetPlayer2Score() == 26);
+        assert(game.GetPlayer1Score() + game.GetPlayer2Score() == Game::NUM_CARDS_HALF);
     }
 
     std::cout << "TestGame passed." << std::endl;
@@ -48,7 +48,7 @@ void TestGameMultiplePlays()
 
         const Player winner2 = game.PlayGame();
 
-        assert(player_1_score + player_2_score == 26);
+        assert(player_1_score + player_2_score == Game::NUM_CARDS_HALF);
         assert(player_1_score == game.GetPlayer1Score());
         assert(player_2_score == game.GetPlayer2Score());
         assert(winner == winner2);
@@ -66,8 +66,8 @@ void TestFullDeckDraw()
     const Player winner = game.PlayGame();
 
     assert(winner == Player::None);
-    assert(game.GetPlayer1Score() == 26);
-    assert(game.GetPlayer2Score() == 26);
+    assert(game.GetPlayer1Score() == Game::NUM_CARDS_HALF);
+    assert(game.GetPlayer2Score() == Game::NUM_CARDS_HALF);
 
     std::cout << "TestFullDeckDraw passed." << std::endl;
 }
@@ -81,7 +81,7 @@ void TestFullDeckPlayer1Wins()
     const Player winner = game.PlayGame();
 
     assert(winner == Player::Player1);
-    assert(game.GetPlayer1Score() == 26);
+    assert(game.GetPlayer1Score() == Game::NUM_CARDS_HALF);
     assert(game.GetPlayer2Score() == 0);
 
     std::cout << "TestFullDeckPlayer1Wins passed." << std::endl;
@@ -97,7 +97,7 @@ void TestFullDeckPlayer2Wins()
 
     assert(winner == Player::Player2);
     assert(game.GetPlayer1Score() == 0);
-    assert(game.GetPlayer2Score() == 26);
+    assert(game.GetPlayer2Score() == Game::NUM_CARDS_HALF);
 
     std::cout << "TestFullDeckPlayer2Wins passed." << std::endl;
 }
@@ -117,8 +117,8 @@ void TestUnusualValues()
     const Player winner = game.PlayGame();
 
     assert(winner == Player::None);
-    assert(game.GetPlayer1Score() == 25);
-    assert(game.GetPlayer2Score() == 25);
+    assert(game.GetPlayer1Score() == Game::NUM_CARDS_HALF - 1);
+    assert(game.GetPlayer2Score() == Game::NUM_CARDS_HALF - 1);
 
     std::cout << "TestUnusualValues passed." << std::endl;
 }

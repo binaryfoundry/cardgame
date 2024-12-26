@@ -20,6 +20,7 @@ class Game final
 {
 public:
     static constexpr size_t NUM_CARDS = 52;
+    static constexpr size_t NUM_CARDS_HALF = NUM_CARDS / 2;
     static_assert(NUM_CARDS % 2 == 0, "NUM_CARDS must be even");
 
     Game();
@@ -42,9 +43,6 @@ public:
     [[nodiscard]] Player PlayGame(const RoundCallback& round_callback);
 
 private:
-
-    static constexpr size_t NUM_CARDS_HALF = NUM_CARDS / 2;
-
     size_t round = 0;
     uint32_t player_1_score = 0;
     uint32_t player_2_score = 0;
