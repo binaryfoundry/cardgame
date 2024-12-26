@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <vector>
 #include <functional>
 
@@ -13,8 +14,10 @@ enum class Player
 class Game final
 {
 public:
+    static constexpr size_t NUM_CARDS = 52;
+
     Game();
-    Game(const std::vector<int32_t>& pre_shuffled_deck);
+    Game(const std::array<int32_t, NUM_CARDS>& pre_shuffled_deck);
 
     int32_t GetPlayer1TopCard() const;
     int32_t GetPlayer2TopCard() const;
@@ -32,7 +35,7 @@ public:
     [[nodiscard]] Player PlayGame(const std::function<void(Player winner)>& round_callback);
 
 private:
-    static constexpr size_t NUM_CARDS = 52;
+
     static constexpr size_t NUM_CARDS_HALF = NUM_CARDS / 2;
 
     static_assert(NUM_CARDS % 2 == 0, "NUM_CARDS must be even");

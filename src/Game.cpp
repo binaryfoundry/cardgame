@@ -21,15 +21,12 @@ Game::Game()
     Split(deck);
 }
 
-Game::Game(const std::vector<int32_t>& pre_shuffled_deck)
+Game::Game(const std::array<int32_t, NUM_CARDS>& pre_shuffled_deck)
 {
-    // Ensure the pre-shuffled deck has the correct number of cards
-    if (pre_shuffled_deck.size() != NUM_CARDS)
-    {
-        throw std::invalid_argument("Pre-shuffled deck must contain exactly NUM_CARDS cards.");
-    }
+    std::vector<int32_t> deck = GenerateDeck();
+    std::copy(pre_shuffled_deck.begin(), pre_shuffled_deck.begin() + NUM_CARDS, deck.begin());
 
-    Split(pre_shuffled_deck);
+    Split(deck);
 }
 
 void Game::Split(const std::vector<int32_t>& deck)
