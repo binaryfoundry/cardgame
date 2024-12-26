@@ -117,7 +117,6 @@ private:
     uint32_t GetPlayer1TopCard() const;
     uint32_t GetPlayer2TopCard() const;
 
-    size_t GetRound() const;
     bool GetGameOver() const;
 
     /**

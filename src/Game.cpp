@@ -87,10 +87,9 @@ Player Game::PlayGame(const RoundCallback& round_callback)
         const Player winner = PlayCurrentRound();
         if (round_callback)
         {
-            const size_t played_round = GetRound();
             const uint32_t player_1_card = GetPlayer1TopCard();
             const uint32_t player_2_card = GetPlayer2TopCard();
-            round_callback(played_round, player_1_card, player_2_card, winner);
+            round_callback(round, player_1_card, player_2_card, winner);
         }
         round++;
     }
@@ -150,11 +149,6 @@ Player Game::GetWinner() const
 bool Game::GetGameOver() const
 {
     return round >= player_1_cards.size() || round >= player_2_cards.size();
-}
-
-size_t Game::GetRound() const
-{
-    return round;
 }
 
 } // namespace cardgame
