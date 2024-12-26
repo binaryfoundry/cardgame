@@ -27,12 +27,10 @@ include_directories(
 
 # Source files and header files
 set(SOURCES
-    src/Game.cpp
-    src/Presentation.cpp)
+    src/Game.cpp)
 
 set(HEADERS
-    include/cardgame/Game.hpp
-    include/cardgame/Presentation.hpp)
+    include/cardgame/Game.hpp)
 
 # Organize files in folders for IDEs
 source_group("Source" FILES ${SOURCES})
