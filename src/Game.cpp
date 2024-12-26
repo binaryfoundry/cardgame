@@ -2,9 +2,9 @@
 #include <algorithm>
 #include <random>
 
-constexpr std::vector<int32_t> Game::GenerateDeck()
+constexpr std::vector<uint32_t> Game::GenerateDeck()
 {
-    std::vector<int32_t> deck(NUM_CARDS);
+    std::vector<uint32_t> deck(NUM_CARDS);
     for (size_t i = 0; i < NUM_CARDS; ++i)
     {
         deck[i] = static_cast<int32_t>(i);
@@ -15,21 +15,21 @@ constexpr std::vector<int32_t> Game::GenerateDeck()
 Game::Game()
 {
     // Initialize the deck and shuffle it
-    std::vector<int32_t> deck = GenerateDeck();
+    std::vector<uint32_t> deck = GenerateDeck();
     Shuffle(deck);
 
     Split(deck);
 }
 
-Game::Game(const std::array<int32_t, NUM_CARDS>& pre_shuffled_deck)
+Game::Game(const std::array<uint32_t, NUM_CARDS>& pre_shuffled_deck)
 {
-    std::vector<int32_t> deck = GenerateDeck();
+    std::vector<uint32_t> deck = GenerateDeck();
     std::copy(pre_shuffled_deck.begin(), pre_shuffled_deck.begin() + NUM_CARDS, deck.begin());
 
     Split(deck);
 }
 
-void Game::Split(const std::vector<int32_t>& deck)
+void Game::Split(const std::vector<uint32_t>& deck)
 {
     // Resize the player card vectors
     player_1_cards.resize(NUM_CARDS_HALF);
@@ -47,14 +47,14 @@ void Game::Split(const std::vector<int32_t>& deck)
  *
  * @param deck The deck of cards to shuffle.
  */
-void Game::Shuffle(std::vector<int32_t>& deck)
+void Game::Shuffle(std::vector<uint32_t>& deck)
 {
     std::random_device rd;
     std::mt19937 g(rd());
     std::shuffle(deck.begin(), deck.end(), g);
 }
 
-int32_t Game::GetPlayer1TopCard() const
+uint32_t Game::GetPlayer1TopCard() const
 {
     if (round >= player_1_cards.size())
     {
@@ -63,7 +63,7 @@ int32_t Game::GetPlayer1TopCard() const
     return player_1_cards[round];
 }
 
-int32_t Game::GetPlayer2TopCard() const
+uint32_t Game::GetPlayer2TopCard() const
 {
     if (round >= player_2_cards.size())
     {
@@ -72,12 +72,12 @@ int32_t Game::GetPlayer2TopCard() const
     return player_2_cards[round];
 }
 
-int32_t Game::GetPlayer1Score() const
+uint32_t Game::GetPlayer1Score() const
 {
     return player_1_score;
 }
 
-int32_t Game::GetPlayer2Score() const
+uint32_t Game::GetPlayer2Score() const
 {
     return player_2_score;
 }

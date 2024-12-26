@@ -11,7 +11,7 @@ enum class Player
     None
 };
 
-using RoundCallback = std::function<void(const size_t played_round, const int32_t player_1_card, const int32_t player_2_card, const Player winner)>;
+using RoundCallback = std::function<void(const size_t played_round, const uint32_t player_1_card, const uint32_t player_2_card, const Player winner)>;
 
 class Game final
 {
@@ -19,10 +19,10 @@ public:
     static constexpr size_t NUM_CARDS = 52;
 
     Game();
-    Game(const std::array<int32_t, NUM_CARDS>& pre_shuffled_deck);
+    Game(const std::array<uint32_t, NUM_CARDS>& pre_shuffled_deck);
 
-    int32_t GetPlayer1Score() const;
-    int32_t GetPlayer2Score() const;
+    uint32_t GetPlayer1Score() const;
+    uint32_t GetPlayer2Score() const;
 
     /**
      * @brief Plays a whole game.
@@ -44,17 +44,17 @@ private:
     static_assert(NUM_CARDS % 2 == 0, "NUM_CARDS must be even");
 
     size_t round = 0;
-    int32_t player_1_score = 0;
-    int32_t player_2_score = 0;
-    std::vector<int32_t> player_1_cards;
-    std::vector<int32_t> player_2_cards;
+    uint32_t player_1_score = 0;
+    uint32_t player_2_score = 0;
+    std::vector<uint32_t> player_1_cards;
+    std::vector<uint32_t> player_2_cards;
 
-    static constexpr std::vector<int32_t> GenerateDeck();
-    void Split(const std::vector<int32_t>& deck);
-    void Shuffle(std::vector<int32_t>& deck);
+    static constexpr std::vector<uint32_t> GenerateDeck();
+    void Split(const std::vector<uint32_t>& deck);
+    void Shuffle(std::vector<uint32_t>& deck);
 
-    int32_t GetPlayer1TopCard() const;
-    int32_t GetPlayer2TopCard() const;
+    uint32_t GetPlayer1TopCard() const;
+    uint32_t GetPlayer2TopCard() const;
 
     size_t GetRound() const;
     bool GetGameOver() const;
