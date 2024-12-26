@@ -70,7 +70,7 @@ public:
      * @param round_callback An optional callback function that is called with the winner of each round. Default is nullptr.
      * @return The winner of the game (Player::Player1 or Player::Player2 or Player::None for a draw).
      */
-    [[nodiscard]] Player PlayGame(const RoundCallback& round_callback = nullptr);
+    [[nodiscard]] Player Play(const RoundCallback& round_callback = nullptr);
 
 private:
     // Private members

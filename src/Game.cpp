@@ -78,7 +78,7 @@ uint32_t Game::GetPlayer2Score() const
     return player_2_score;
 }
 
-Player Game::PlayGame(const RoundCallback& round_callback)
+Player Game::Play(const RoundCallback& round_callback)
 {
     Reset();
 
