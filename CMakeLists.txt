@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 # Project setup
 set(PROJECT_NAME cardgame)
+set(LIBRARY_NAME cardgame_lib)
 project(${PROJECT_NAME})
 
 # C++ standard
@@ -21,19 +22,21 @@ endif()
 # Enable folder organization in IDEs
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+include_directories(
+    ${PROJECT_SOURCE_DIR}/include)
+
 # Source files and header files
 set(SOURCES
-    src/Main.cpp
     src/Game.cpp
     src/Presentation.cpp)
 
 set(HEADERS
-    src/Game.hpp
-    src/Presentation.hpp)
+    include/cardgame/Game.hpp
+    include/cardgame/Presentation.hpp)
 
 # Organize files in folders for IDEs
 source_group("Source" FILES ${SOURCES})
-source_group("Source" FILES ${HEADERS})
+source_group("Headers" FILES ${HEADERS})
 
 # Platform-specific configurations
 if (MSVC)
@@ -46,7 +49,19 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 endif()
 
 # Add the executable
-add_executable(
-    ${PROJECT_NAME}
+add_library(
+    ${LIBRARY_NAME}
     ${SOURCES}
     ${HEADERS})
+
+# Add the executable
+add_executable(${PROJECT_NAME} src/Main.cpp)
+
+# Link the library to the executable
+target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARY_NAME})
+
+# Enable testing
+enable_testing()
+
+# Add test directory
+add_subdirectory(tests)

@@ -1,4 +1,4 @@
-#include "Game.hpp"
+#include "cardgame/Game.hpp"
 #include <algorithm>
 #include <random>
 
