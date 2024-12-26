@@ -112,6 +112,8 @@ Player Game::PlayCurrentRound()
     }
     else
     {
+        player_1_score++;
+        player_2_score++;
         round_winner = Player::None; // It's a draw
     }
 
