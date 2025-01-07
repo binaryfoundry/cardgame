@@ -22,7 +22,7 @@ void TestGame()
     for (uint32_t i = 0; i < 20; i++)
     {
         Game game;
-        const Player winner = game.Play([&](const uint32_t played_round, const int32_t player_1_card, const int32_t player_2_card, const Player winner)
+        const Player winner = game.Play([&](const uint32_t played_round, const uint32_t player_1_card, const uint32_t player_2_card, const Player winner)
         {
             assert(winner != Player::None);
 
@@ -47,7 +47,7 @@ void TestGameMultiplePlays()
     for (uint32_t i = 0; i < 20; i++)
     {
         Game game;
-        const Player winner = game.Play([&](const uint32_t played_round, const int32_t player_1_card, const int32_t player_2_card, const Player winner)
+        const Player winner = game.Play([&](const uint32_t played_round, const uint32_t player_1_card, const uint32_t player_2_card, const Player winner)
         {
             assert(winner != Player::None);
         });

@@ -106,8 +106,8 @@ void Game::Reset()
 
 Player Game::PlayCurrentRound()
 {
-    const int32_t player1TopCard = GetPlayer1TopCard();
-    const int32_t player2TopCard = GetPlayer2TopCard();
+    const uint32_t player1TopCard = GetPlayer1TopCard();
+    const uint32_t player2TopCard = GetPlayer2TopCard();
 
     Player round_winner;
     if (player1TopCard > player2TopCard)
