@@ -14,7 +14,7 @@ enum class Player
     None
 };
 
-using RoundCallback = std::function<void(const size_t played_round, const uint32_t player_1_card, const uint32_t player_2_card, const Player winner)>;
+using RoundCallback = std::function<void(const uint32_t played_round, const uint32_t player_1_card, const uint32_t player_2_card, const Player winner)>;
 
 class Game final
 {
@@ -23,13 +23,13 @@ public:
     /**
      * @brief The total number of cards in the Game deck.
      */
-    static constexpr size_t NUM_CARDS = 52;
+    static constexpr uint32_t NUM_CARDS = 52;
     static_assert(NUM_CARDS % 2 == 0, "NUM_CARDS must be even");
 
     /**
      * @brief The number of cards each player gets.
      */
-    static constexpr size_t NUM_CARDS_HALF = NUM_CARDS / 2;
+    static constexpr uint32_t NUM_CARDS_HALF = NUM_CARDS / 2;
 
     // Constructors
     /**
@@ -77,7 +77,7 @@ private:
     /**
      * @brief The current round number.
      */
-    size_t round = 0;
+    uint32_t round = 0;
 
     /**
      * @brief The current score of Player 1.
