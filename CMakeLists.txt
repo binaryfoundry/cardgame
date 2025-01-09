@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 # Project setup
 set(PROJECT_NAME cardgame)
-set(LIBRARY_NAME cardgame_lib)
+set(TESTS_NAME cardgame_test)
 project(${PROJECT_NAME})
 
 # C++ standard
@@ -36,6 +36,9 @@ set(HEADERS
 source_group("Source" FILES ${SOURCES})
 source_group("Headers" FILES ${HEADERS})
 
+source_group("Source" FILES src/Main.cpp)
+source_group("Source" FILES tests/GameTest.cpp)
+
 # Platform-specific configurations
 if (MSVC)
     message(STATUS "Configuring for MSVC")
@@ -47,19 +50,19 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 endif()
 
 # Add the executable
-add_library(
-    ${LIBRARY_NAME}
+add_executable(
+    ${PROJECT_NAME}
     ${SOURCES}
-    ${HEADERS})
-
-# Add the executable
-add_executable(${PROJECT_NAME} game/Main.cpp)
-
-# Link the library to the executable
-target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARY_NAME})
+    ${HEADERS}
+    src/Main.cpp)
 
 # Enable testing
 enable_testing()
 
-# Add test directory
-add_subdirectory(tests)
+# Add test executable
+add_executable(
+    ${TESTS_NAME}
+    ${SOURCES}
+    ${HEADERS}
+    tests/GameTest.cpp)
+
